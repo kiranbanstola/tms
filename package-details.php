@@ -8,15 +8,15 @@ $pid=intval($_GET['pkgid']);
 $useremail=$_SESSION['login'];
 $fromdate=$_POST['fromdate'];
 $todate=$_POST['todate'];
-$comment=$_POST['comment'];
+$transport=$_POST['transport'];
 $status=0;
-$sql="INSERT INTO tblbooking(PackageId,UserEmail,FromDate,ToDate,Comment,status) VALUES(:pid,:useremail,:fromdate,:todate,:comment,:status)";
+$sql="INSERT INTO tblbooking(PackageId,UserEmail,FromDate,ToDate,TransportId,status) VALUES(:pid,:useremail,:fromdate,:todate,:transport,:status)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':pid',$pid,PDO::PARAM_STR);
 $query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
 $query->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
 $query->bindParam(':todate',$todate,PDO::PARAM_STR);
-$query->bindParam(':comment',$comment,PDO::PARAM_STR);
+$query->bindParam(':transport',$transport,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
@@ -31,6 +31,8 @@ $error="Something went wrong. Please try again";
 
 }
 ?>
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -111,21 +113,33 @@ foreach($results as $result)
 			<div class="col-md-4 selectroom_left wow fadeInLeft animated" data-wow-delay=".5s">
 				<img src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" class="img-responsive" alt="">
 			</div>
+
 			<div class="col-md-8 selectroom_right wow fadeInRight animated" data-wow-delay=".5s">
 				<h2><?php echo htmlentities($result->PackageName);?></h2>
 				<p class="dow">#PKG-<?php echo htmlentities($result->PackageId);?></p>
 				<p><b>Package Type :</b> <?php echo htmlentities($result->PackageType);?></p>
 				<p><b>Package Location :</b> <?php echo htmlentities($result->PackageLocation);?></p>
-					<p><b>Features</b> <?php echo htmlentities($result->PackageFetures);?></p>
-					<div class="ban-bottom">
+					<p><b>Features :</b> <?php echo htmlentities($result->PackageFetures);?></p>
+					
+					<label><p><b>Transportation :</b></p></label> <?php echo htmlentities($result->transport);?>
+					<br>
+					<input type="radio" id="Bus" name="Transport" value="Bus">
+ 						 <label for="Bus">&nbsp;&nbsp;&nbsp;Bus</label><br>
+  					<input type="radio" id="Airplane" name="TransportName" value="Airplane">
+  						<label for="Airplane">&nbsp;&nbsp;&nbsp;Airplane</label><br>
+  					<input type="radio" id="Train" name="Transport" value="Train">
+  						<label for="Train">&nbsp;&nbsp;&nbsp;Train</label> 
+
+
+			<div class="ban-bottom">
 				<div class="bnr-right">
-				<label class="inputLabel">From</label>
-				<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
-			</div>
-			<div class="bnr-right">
-				<label class="inputLabel">To</label>
-				<input class="date" id="datepicker1" type="text" placeholder="dd-mm-yyyy" name="todate" required="">
-			</div>
+					<label class="inputLabel">From</label>
+					<input class="date" id="datepicker" type="text" placeholder="dd-mm-yyyy"  name="fromdate" required="">
+				</div>
+				<div class="bnr-right">
+					<label class="inputLabel">To</label>
+					<input class="date" id="datepicker1" type="text" placeholder="dd-mm-yyyy" name="todate" required="">
+				</div>
 			</div>
 						<div class="clearfix"></div>
 				<div class="grand">

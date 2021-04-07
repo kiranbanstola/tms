@@ -122,7 +122,7 @@ $error="You can't cancel booking before 24 hours";
 <th>Package Name</th>	
 <th>From</th>
 <th>To</th>
-<th>Comment</th>
+<th>Transportation</th>
 <th>Status</th>
 <th>Booking Date</th>
 <th>Action</th>
@@ -130,7 +130,20 @@ $error="You can't cancel booking before 24 hours";
 <?php 
 
 $uemail=$_SESSION['login'];;
-$sql = "SELECT tblbooking.BookingId as bookid,tblbooking.PackageId as pkgid,tbltourpackages.PackageName as packagename,tblbooking.FromDate as fromdate,tblbooking.ToDate as todate,tblbooking.Comment as comment,tblbooking.status as status,tblbooking.RegDate as regdate,tblbooking.CancelledBy as cancelby,tblbooking.UpdationDate as upddate from tblbooking join tbltourpackages on tbltourpackages.PackageId=tblbooking.PackageId where UserEmail=:uemail";
+$sql = "SELECT 
+tblbooking.BookingId as bookid,
+tblbooking.PackageId as pkgid,
+tbltourpackages.PackageName as packagename,
+tblbooking.FromDate as fromdate,
+tblbooking.ToDate as todate,
+tblbooking.TransportId as transportid,
+tbltransport.TransportName as transportname,
+tblbooking.status as status,
+tblbooking.RegDate as regdate,
+tblbooking.CancelledBy as cancelby,
+tblbooking.UpdationDate as upddate 
+from tblbooking  join tbltourpackages on tbltourpackages.PackageId=tblbooking.PackageId
+ 				 join tbltransport on tbltransport.TransportId=tblbooking.TransportId where UserEmail=:uemail";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':uemail', $uemail, PDO::PARAM_STR);
 $query->execute();
@@ -143,10 +156,11 @@ foreach($results as $result)
 <tr align="center">
 <td><?php echo htmlentities($cnt);?></td>
 <td>#BK<?php echo htmlentities($result->bookid);?></td>
-<td><a href="package-details.php?pkgid=<?php echo htmlentities($result->pkgid);?>"><?php echo htmlentities($result->packagename);?></a></td>
+<td><?php echo htmlentities($result->packagename);?></a></td>
 <td><?php echo htmlentities($result->fromdate);?></td>
 <td><?php echo htmlentities($result->todate);?></td>
-<td><?php echo htmlentities($result->comment);?></td>
+<td><?php echo htmlentities($result->transportid);?></td>
+
 <td><?php if($result->status==0)
 {
 echo "Pending";

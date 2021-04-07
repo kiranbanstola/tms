@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2021 at 05:37 AM
+-- Generation Time: Apr 07, 2021 at 08:26 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -53,7 +53,7 @@ CREATE TABLE `tblbooking` (
   `UserEmail` varchar(100) DEFAULT NULL,
   `FromDate` varchar(100) DEFAULT NULL,
   `ToDate` varchar(100) DEFAULT NULL,
-  `Comment` mediumtext DEFAULT NULL,
+  `TransportId` int(11) DEFAULT NULL,
   `RegDate` timestamp NULL DEFAULT current_timestamp(),
   `status` int(11) DEFAULT NULL,
   `CancelledBy` varchar(5) DEFAULT NULL,
@@ -65,9 +65,35 @@ CREATE TABLE `tblbooking` (
 --
 
 INSERT INTO `tblbooking` (`BookingId`, `PackageId`, `UserEmail`, `FromDate`, `ToDate`, `Comment`, `RegDate`, `status`, `CancelledBy`, `UpdationDate`) VALUES
-(13, 1, 'abc@gmail.com', 'NaN-NaN-NaN', 'NaN-NaN-NaN', NULL, '2021-04-02 03:32:25', 0, NULL, NULL);
+(15, 2, 'abc@gmail.com', '2021-04-10', '2021-04-21', NULL, '2021-04-02 06:13:18', 1, NULL, '2021-04-02 06:13:38'),
+(16, 2, 'abc@gmail.com', '2021-04-24', '2021-04-30', NULL, '2021-04-02 07:06:54', 2, 'u', '2021-04-02 07:07:24'),
+(17, 1, 'abc@gmail.com', '2021-04-03', '2021-04-26', NULL, '2021-04-04 01:49:20', 1, NULL, '2021-04-04 01:55:00'),
+(18, 3, 'abc@gmail.com', '2021-04-10', '2021-04-24', NULL, '2021-04-04 01:54:44', 2, 'a', '2021-04-04 01:55:14'),
+(19, 1, 'bishal@gmail.com', '2021-04-05', '2021-04-10', NULL, '2021-04-07 03:35:36', 2, 'a', '2021-04-07 03:36:54');
 
 -- --------------------------------------------------------
+
+--
+-- Table structure for table `tblTransport`
+--
+
+CREATE TABLE `tbltransport` (
+
+  `TransportId` int(11) NOT NULL,
+  `TransportName` varchar(100) DEFAULT NULL,
+  `BookingId` int(11) DEFAULT NULL,
+  `UserEmail` varchar(100) DEFAULT NULL,
+
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tblbooking`
+--
+
+
+
+-- --------------------------------------------------------
+
 
 --
 -- Table structure for table `tblenquiry`
@@ -84,33 +110,15 @@ CREATE TABLE `tblenquiry` (
   `Status` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `tblissues`
+-- Dumping data for table `tblenquiry`
 --
 
-CREATE TABLE `tblissues` (
-  `id` int(11) NOT NULL,
-  `UserEmail` varchar(100) DEFAULT NULL,
-  `Issue` varchar(100) DEFAULT NULL,
-  `Description` mediumtext DEFAULT NULL,
-  `PostingDate` timestamp NULL DEFAULT current_timestamp(),
-  `AdminRemark` mediumtext DEFAULT NULL,
-  `AdminremarkDate` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tblpages`
---
-
-CREATE TABLE `tblpages` (
-  `id` int(11) NOT NULL,
-  `type` varchar(255) DEFAULT '',
-  `detail` longtext DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+INSERT INTO `tblenquiry` (`id`, `FullName`, `EmailId`, `MobileNumber`, `Subject`, `Description`, `PostingDate`, `Status`) VALUES
+(5, 'abc', 'abc@gmail1.com', '9876543210', 'test', 'test', '2021-04-02 06:14:28', 1),
+(6, 'abc', 'abc@gmail1.com', '9876543210', 'test', 'test', '2021-04-02 06:15:01', NULL),
+(7, 'aba', 'abc@gmail1.com', '1234567890', 'asdas', 'asdasd', '2021-04-04 01:51:17', NULL),
+(8, 'Bishal', 'bishal@gmail.com', '9871234560', 'About abc', 'abc', '2021-04-07 03:35:15', NULL);
 
 -- --------------------------------------------------------
 
@@ -136,10 +144,10 @@ CREATE TABLE `tbltourpackages` (
 --
 
 INSERT INTO `tbltourpackages` (`PackageId`, `PackageName`, `PackageType`, `PackageLocation`, `PackagePrice`, `PackageFetures`, `PackageDetails`, `PackageImage`, `Creationdate`, `UpdationDate`) VALUES
-(1, 'Pokhara', 'General', 'Pokhara, Nepal', 100, 'Air Conditioning ,Balcony / Terrace,Cable / Satellite / Pay TV available,Ceiling Fan,Hairdryer', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"', 'Phewa-lake-Pokhara.jpg', NULL, '2021-04-02 03:30:23'),
-(2, 'Lumbini', 'Standard', 'Lumbini, Nepal', 600, '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ', 'lumbini.jpg', NULL, '2021-04-02 03:30:28'),
-(3, 'Rara Lake', 'Standard', 'Mugu, Nepal', 600, '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ', 'Rara-lake-990x490.jpg', NULL, '2021-04-02 03:30:31'),
-(4, 'Tilicho Lake', 'Family and Couple', 'Manang, Nepal', 800, '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ', 'image_processing20191001-19-ql6svi.jpg', NULL, '2021-04-02 03:30:36');
+(1, 'Pokhara', 'General', 'Pokhara, Nepal', 500, 'Air Conditioning, Balcony,  TV available, Ceiling Fan', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\"', 'Phewa-lake-Pokhara.jpg', NULL, '2021-04-05 14:20:45'),
+(2, 'Lumbini', 'Standard', 'Lumbini, Nepal', 600, 'Air Conditioning, Balcony,  TV available, Ceiling Fan', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ', 'lumbini.jpg', NULL, '2021-04-05 14:22:34'),
+(3, 'Rara Lake', 'Standard', 'Mugu, Nepal', 600, 'Air Conditioning, Balcony,  TV available, Ceiling Fan', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ', 'Rara-lake-990x490.jpg', NULL, '2021-04-05 14:22:46'),
+(4, 'Tilicho Lake', 'Family and Couple', 'Manang, Nepal', 800, 'Air Conditioning, Balcony,  TV available, Ceiling Fan', '\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor ', 'image_processing20191001-19-ql6svi.jpg', NULL, '2021-04-05 14:22:58');
 
 -- --------------------------------------------------------
 
@@ -162,7 +170,8 @@ CREATE TABLE `tblusers` (
 --
 
 INSERT INTO `tblusers` (`id`, `FullName`, `MobileNumber`, `EmailId`, `Password`, `RegDate`, `UpdationDate`) VALUES
-(12, 'abc', '987654321', 'abc@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2021-04-01 14:36:07', NULL);
+(12, 'Kiran Banstola', '987654321', 'abc@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2021-04-01 14:36:07', '2021-04-05 14:18:02'),
+(13, 'bishal', '9874563210', 'bishal@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '2021-04-07 03:34:25', NULL);
 
 --
 -- Indexes for dumped tables
@@ -181,21 +190,15 @@ ALTER TABLE `tblbooking`
   ADD PRIMARY KEY (`BookingId`);
 
 --
+-- Indexes for table `tbltransport`
+--
+ALTER TABLE `tbltransport`
+  ADD PRIMARY KEY (`TransportId`);
+
+--
 -- Indexes for table `tblenquiry`
 --
 ALTER TABLE `tblenquiry`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tblissues`
---
-ALTER TABLE `tblissues`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `tblpages`
---
-ALTER TABLE `tblpages`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -226,25 +229,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `tblbooking`
 --
 ALTER TABLE `tblbooking`
-  MODIFY `BookingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `BookingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `tblenquiry`
 --
 ALTER TABLE `tblenquiry`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `tblissues`
---
-ALTER TABLE `tblissues`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `tblpages`
---
-ALTER TABLE `tblpages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbltourpackages`
@@ -256,7 +247,7 @@ ALTER TABLE `tbltourpackages`
 -- AUTO_INCREMENT for table `tblusers`
 --
 ALTER TABLE `tblusers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -3,10 +3,13 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 ?>
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
 <title>Package List</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="applijewelleryion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -28,7 +31,9 @@ include('includes/config.php');
 <!--//end-animate-->
 </head>
 <body>
+
 <?php include('includes/header.php');?>
+
 <!--- banner ---->
 <div class="banner-3">
 	<div class="container">

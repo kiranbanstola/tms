@@ -135,13 +135,13 @@ i.fa.fa-lock {
 /*-- /header --*/
 /*-- banner --*/
 .banner {
-    background: url(../images/3.jpg)no-repeat;
+    background: url(../images/1.jpg)no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
     -moz-background-size: cover;
-    min-height: 430px;
+    min-height: 520px;
 }
 .banner h1 {
     font-size: 50px;
@@ -368,6 +368,7 @@ i.fa.fa-truck,i.fa.fa-user,i.fa.fa-ticket {
 /*-- holiday --*/
 .holiday {
     padding: 5em 0;
+
 }
 .holiday h3 {
     font-size: 2em;
@@ -445,18 +446,18 @@ i.fa.fa-truck,i.fa.fa-user,i.fa.fa-ticket {
 /*-- /footer --*/
 /*-- bus --*/
 .banner-1 {
-    background: url(../images/3.jpg)no-repeat;
+    background: url(../images/1.jpg)no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
     -moz-background-size: cover;
-    min-height:200px;
+    min-height:520px;
 }
 .banner-1 h1 {
     font-size: 50px;
     margin-bottom: 40px;
-    padding: 1.5em 0 0;
+    padding: 4em 0 0;
     text-align: center;
     color: #ffffff;
 }
@@ -764,36 +765,36 @@ i.fa.fa-gift{
 /*-- /offers-1 --*/
 /*-- hotels --*/
 .banner-2 {
-    background: url(../images/6.jpg)no-repeat;
+    background: url(../images/1.jpg)no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
     -moz-background-size: cover;
-    min-height: 430px;
+    min-height: 520px;
 }
 .banner-3 {
-    background: url(../images/6.jpg)no-repeat;
+     background: url(../images/1.jpg)no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
     -moz-background-size: cover;
-    min-height:200px;
+    min-height: 520px;
 }
 .banner-2 h1 {
     font-size: 50px;
     margin-bottom: 40px;
-    padding: 2em 0 0;
+    padding: 4em 0 0;
     text-align: center;
-    color: #fff;
+    color: #ffffff;
 }
 .banner-3 h1 {
     font-size: 50px;
     margin-bottom: 40px;
-    padding: 1.5em 0 0;
+    padding: 4em 0 0;
     text-align: center;
-    color: #fff;
+    color: #ffffff;
 }
 .hotes-left {
     text-align: center;
@@ -1125,14 +1126,13 @@ span.glyphicon.glyphicon-eye-open, span.glyphicon.glyphicon-thumbs-up {
 /*-- /details --*/
 /*-- rooms --*/
 .rooms-top {
-    background: url(../images/7.jpg)no-repeat;
+     background: url(../images/1.jpg)no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
     -ms-background-size: cover;
     -moz-background-size: cover;
-    min-height: 390px;
-    padding: 18em 0 0;
+    min-height: 430px;
 }
 .rom-info {
     background: rgba(63, 132, 177, 0.79);
@@ -1886,7 +1886,7 @@ ul.paging{
     border: 1px solid #D1D1D1;
     background: #E1E1E1;
     font-size: 14px;
-    color: #999;
+    color: #000000;
     padding: 10px;
     width: 100%;
     margin-bottom: .5em;
@@ -2301,6 +2301,7 @@ i.fa.fa-h-square,i.fa.fa-usd,i.fa.fa-mobile {
 }
 .holiday {
     padding: 3em 0;
+
 }
 .holiday h3 {
     font-size: 1.7em;
